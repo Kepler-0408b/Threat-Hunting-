@@ -432,7 +432,7 @@ table.t tr:last-child td{border-bottom:0}
 .gate-back{position:absolute;left:0;bottom:-2px}
 /* marquee band (as on the report pages) */
 .marq{position:relative;height:74px;flex:none;overflow:hidden;margin:clamp(10px,2vh,22px) 0 4px}
-.band{position:absolute;left:-5%;width:110%;top:14px;padding:9px 0;display:flex;overflow:hidden;white-space:nowrap;background:var(--accent);color:var(--on-accent);transform:rotate(-1.4deg)}
+.band{position:absolute;left:-5%;width:110%;top:14px;padding:9px 0;display:flex;overflow:hidden;white-space:nowrap;background:var(--accent);color:var(--on-accent)}
 .band .track{display:flex;flex-shrink:0;animation:mq 42s linear infinite;font-family:var(--f-d);font-weight:700;font-size:18px;letter-spacing:-.01em;line-height:1.45}
 .band .track{height:auto;overflow:visible;background:none;box-shadow:none;border-radius:0;gap:0}
 .band .track span{padding:0 20px;display:inline-flex;align-items:center;gap:20px}
@@ -533,7 +533,7 @@ body.has-cursor .cur-dot,body.has-cursor .cur-ring{opacity:1}
   .people-head input[type=search]{max-width:none}
   .who-btn .role{display:none}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
 @media (max-width:600px){.gate-top .sync>span:last-child{display:none}.gate-top .sync{padding:8px}.gate-top .brand span{display:none}.gate-top .brand b{white-space:nowrap}}
 </style>
 </head>
@@ -1189,7 +1189,9 @@ function openSwitch(){
 }
 
 /* ---------- motion effects, modelled on the report pages ---------- */
-const RM = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+// Effects run even when the OS asks for reduced motion (Windows "Animation effects" off):
+// the team asked for the same lively opening screen on every device. ?still turns them off.
+const RM = /[?&]still\b/.test(location.search);
 const FINE = !!(window.matchMedia && matchMedia("(hover:hover) and (pointer:fine)").matches);
 const FX = {
   cursorOn:false,
