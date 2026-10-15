@@ -536,7 +536,7 @@ body.has-cursor .cur-dot,body.has-cursor .cur-ring{opacity:1}
   .who-btn .role{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style>
+@media (max-width:900px){.gtitle .row2 .o{-webkit-text-stroke:1.6px var(--ink)}}@media (max-width:600px){.gate-top .sync>span:last-child{display:none}.gate-top .sync{padding:8px}.gate-top .brand span{display:none}.gate-top .brand b{white-space:nowrap}}</style>
 </head>
 <body>
 
@@ -567,7 +567,7 @@ body.has-cursor .cur-dot,body.has-cursor .cur-ring{opacity:1}
    Firebase Console → Project settings → Your apps → Web app → firebaseConfig.
    Để null thì web chạy ở chế độ "chỉ lưu trên máy này" (không đồng bộ).
    ===================================================================== */
-const FIREBASE_CONFIG = null;
+const FIREBASE_CONFIG = { apiKey: "AIzaSyDbZGiGwEBFUE3_TibqitBGBf8eHYU06ic", authDomain: "research-review-hub.firebaseapp.com", projectId: "research-review-hub", storageBucket: "research-review-hub.firebasestorage.app", messagingSenderId: "605468013753", appId: "1:605468013753:web:a778737286494551931768" };
 /* Ví dụ:
 const FIREBASE_CONFIG = {
   apiKey: "AIza...",
