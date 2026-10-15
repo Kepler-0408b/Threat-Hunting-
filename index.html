@@ -24,7 +24,7 @@
   --f-m:'JetBrains Mono',ui-monospace,Consolas,monospace;
   --ease:cubic-bezier(.2,.8,.1,1);
   --r:22px; --r-sm:14px;
-  --team-1:var(--c-cyan); --team-2:var(--c-violet);
+  --team-1:var(--c-cyan); --team-2:var(--c-violet);--team-3:var(--c-green);--team-4:var(--c-orange);--team-5:var(--c-red);--team-6:var(--c-sand);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0A1130; --bg2:#101942; --surface:rgba(20,30,72,.62); --surface-solid:#131D4A; --surface-2:rgba(160,180,255,.06);
@@ -79,7 +79,7 @@ body.on-gate #bgCanvas{opacity:1}
 .brand{display:flex;align-items:center;gap:11px;padding:0 8px 18px;text-decoration:none;color:var(--ink)}
 .brand .mark{width:36px;height:36px;flex:none}
 .brand b{display:block;font-family:var(--f-d);font-weight:800;font-size:17px;letter-spacing:-.02em;line-height:1.1}
-.brand span{display:block;font-size:12px;color:var(--mute)}
+.brand span{display:block;font-size:12px;color:var(--mute);max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nav{display:flex;flex-direction:column;gap:2px}
 .nav-label{font-family:var(--f-m);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding:16px 12px 6px}
 .nav button{position:relative;display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:0;
@@ -192,7 +192,7 @@ select{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:34px
 
 .tchip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:2px 10px 2px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--ink);white-space:nowrap;line-height:1.5}
 .tchip i,.tdot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
-.tchip.t1 i,.tdot.t1{background:var(--team-1)} .tchip.t2 i,.tdot.t2{background:var(--team-2)}
+.tchip.t1 i,.tdot.t1{background:var(--team-1)} .tchip.t2 i,.tdot.t2{background:var(--team-2)} .tchip.t3 i,.tdot.t3{background:var(--team-3)} .tchip.t4 i,.tdot.t4{background:var(--team-4)} .tchip.t5 i,.tdot.t5{background:var(--team-5)} .tchip.t6 i,.tdot.t6{background:var(--team-6)}
 .tchip.tall i{background:linear-gradient(90deg,var(--team-1) 50%,var(--team-2) 50%)}
 .tchip.left{color:var(--mute);border-style:dashed}
 
@@ -213,7 +213,7 @@ select{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:34px
 .team-card{padding:22px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
 .team-card::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;
   background:radial-gradient(circle,color-mix(in srgb,var(--tc) 28%,transparent),transparent 70%);pointer-events:none}
-.team-card.t1{--tc:var(--team-1)} .team-card.t2{--tc:var(--team-2)}
+.team-card.t1{--tc:var(--team-1)} .team-card.t2{--tc:var(--team-2)} .team-card.t3{--tc:var(--team-3)} .team-card.t4{--tc:var(--team-4)} .team-card.t5{--tc:var(--team-5)} .team-card.t6{--tc:var(--team-6)}
 .tc-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tc-topic{font-family:var(--f-d);font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.2;overflow-wrap:anywhere}
 .tc-meta{display:flex;gap:4px 16px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
@@ -374,14 +374,12 @@ table.t tr:last-child td{border-bottom:0}
 .g-left .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(14px,3vh,28px)}
 .mchip{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;padding:5px 12px;border:1px solid var(--line2);border-radius:999px;color:var(--ink2);background:var(--surface);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .mchip i{width:9px;height:9px;border-radius:50%}
-.gtitle{font-family:var(--f-d);font-weight:800;font-size:clamp(44px,min(7.4vw,14vh),128px);letter-spacing:-.055em;line-height:.88;margin-left:-.04em}
+.gtitle{font-family:var(--f-d);font-weight:800;font-size:clamp(44px,min(7.4vw,14vh),128px);letter-spacing:-.035em;line-height:.95;margin-left:-.03em}
 .gtitle .row{display:block;white-space:nowrap}
 .gtitle .ch{display:inline-block}
-/* outlined row: a thick stroke layer under a background-coloured fill layer, so the
-   variable font's overlapping contours never show as lines through the letters */
 .gtitle .row2{position:relative}
-.gtitle .row2 .o{color:transparent;-webkit-text-stroke:3.2px var(--ink)}
-.gtitle .row2 .f{position:absolute;left:0;top:0;color:var(--bg);pointer-events:none}
+.gtitle .row2{color:var(--accent)}
+.gtitle .row2 .dot{color:var(--accent2)}
 .gtitle.pre .ch{opacity:0}
 .gtitle.go .ch{opacity:0;transform:translateY(.45em) rotate(6deg);filter:blur(8px);animation:chIn .9s var(--ease) forwards;animation-delay:calc(var(--i) * 45ms - var(--el,0ms))}
 @keyframes chIn{to{opacity:1;transform:none;filter:none}}
@@ -434,11 +432,12 @@ table.t tr:last-child td{border-bottom:0}
 .people-foot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line);flex:none}
 .gate-back{position:absolute;left:0;bottom:-2px}
 /* marquee band (as on the report pages) */
-.marq{position:relative;height:64px;flex:none;overflow:hidden;margin:0 0 4px}
+.marq{position:relative;height:74px;flex:none;overflow:hidden;margin:clamp(10px,2vh,22px) 0 4px}
 .band{position:absolute;left:-5%;width:110%;top:14px;padding:9px 0;display:flex;overflow:hidden;white-space:nowrap;background:var(--accent);color:var(--on-accent);transform:rotate(-1.4deg)}
-.band .track{display:flex;flex-shrink:0;animation:mq 42s linear infinite;font-family:var(--f-d);font-weight:800;font-size:19px;letter-spacing:-.02em}
+.band .track{display:flex;flex-shrink:0;animation:mq 42s linear infinite;font-family:var(--f-d);font-weight:700;font-size:18px;letter-spacing:-.01em;line-height:1.45}
+.band .track{height:auto;overflow:visible;background:none;box-shadow:none;border-radius:0;gap:0}
 .band .track span{padding:0 20px;display:inline-flex;align-items:center;gap:20px}
-.band .track span::after{content:"";width:10px;height:10px;border-radius:50%;border:2.5px solid currentColor}
+.band .track span::after{content:"";width:7px;height:7px;transform:rotate(45deg);background:currentColor;opacity:.55}
 @keyframes mq{to{transform:translateX(-100%)}}
 /* page loader */
 #pageLoader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:grid;place-items:center;transition:transform 1s var(--ease)}
@@ -536,7 +535,8 @@ body.has-cursor .cur-dot,body.has-cursor .cur-ring{opacity:1}
   .who-btn .role{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-@media (max-width:900px){.gtitle .row2 .o{-webkit-text-stroke:1.6px var(--ink)}}@media (max-width:600px){.gate-top .sync>span:last-child{display:none}.gate-top .sync{padding:8px}.gate-top .brand span{display:none}.gate-top .brand b{white-space:nowrap}}</style>
+@media (max-width:600px){.gate-top .sync>span:last-child{display:none}.gate-top .sync{padding:8px}.gate-top .brand span{display:none}.gate-top .brand b{white-space:nowrap}}
+</style>
 </head>
 <body>
 
@@ -567,7 +567,14 @@ body.has-cursor .cur-dot,body.has-cursor .cur-ring{opacity:1}
    Firebase Console → Project settings → Your apps → Web app → firebaseConfig.
    Để null thì web chạy ở chế độ "chỉ lưu trên máy này" (không đồng bộ).
    ===================================================================== */
-const FIREBASE_CONFIG = { apiKey: "AIzaSyDbZGiGwEBFUE3_TibqitBGBf8eHYU06ic", authDomain: "research-review-hub.firebaseapp.com", projectId: "research-review-hub", storageBucket: "research-review-hub.firebasestorage.app", messagingSenderId: "605468013753", appId: "1:605468013753:web:a778737286494551931768" };
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDbZGiGwEBFUE3_TibqitBGBf8eHYU06ic",
+  authDomain: "research-review-hub.firebaseapp.com",
+  projectId: "research-review-hub",
+  storageBucket: "research-review-hub.firebasestorage.app",
+  messagingSenderId: "605468013753",
+  appId: "1:605468013753:web:a778737286494551931768"
+};
 /* Ví dụ:
 const FIREBASE_CONFIG = {
   apiKey: "AIza...",
@@ -881,7 +888,7 @@ const scoreHtml=s=> (s||s===0)? `<span class="score">${s}<small>/10</small></spa
 const initials=p=>{ if(!p) return "?"; const n=String(p.name||"?").trim(); return esc(n.length<=3? n : n.split(/\s+/).map(w=>w[0]).join("").slice(-2).toUpperCase()); };
 const okAvatar=a=> typeof a==="string" && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(a);
 function avatar(p,cls){ return `<span class="av ${cls||""}">${p&&okAvatar(p.avatar)?`<img src="${p.avatar}" alt="">`:initials(p)}</span>`; }
-const tIdx=id=>(Store.teamIdx(id)%2)+1;
+const tIdx=id=>(Store.teamIdx(id)%6)+1;
 function teamChip(id,left){ if(id==="all") return `<span class="tchip tall"><i></i>Cả các team</span>`; return `<span class="tchip t${tIdx(id)}${left?" left":""}" ${left?'title="Đã rời team"':""}><i></i>${esc(Store.teamName(id))}${left?" · đã rời":""}</span>`; }
 function teamChips(p){ return (p&&p.teams.length)? p.teams.map(t=>teamChip(t)).join("") : `<span class="tchip left"><i></i>Chưa vào team</span>`; }
 function taskTag(t){ if(!t) return ""; return t.by==="teacher"? `<span class="tag tag-gv">Giảng viên giao</span>` : `<span class="tag tag-ld">Leader giao</span>`; }
@@ -918,9 +925,11 @@ const ICON={
   search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>', send:'<path d="M4 12l16-8-6 16-2-7z"/>', out:'<path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/>'
 };
 const ic=(n,cls="")=>`<svg viewBox="0 0 24 24" class="${cls}">${ICON[n]}</svg>`;
-const LOGO=`<svg class="mark" viewBox="0 0 36 36" aria-hidden="true" style="stroke:none"><rect width="36" height="36" rx="11" fill="var(--accent)"/>
-  <g stroke="var(--on-accent)" stroke-width="1.8" fill="none"><path d="M11 24l7-12 7 12z" opacity=".55"/></g>
-  <circle cx="18" cy="12" r="3.6" fill="var(--on-accent)"/><circle cx="11" cy="24" r="3" fill="var(--on-accent)"/><circle cx="25" cy="24" r="3" fill="var(--on-accent)"/></svg>`;
+const LOGO=`<svg class="mark" viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <rect x=".75" y=".75" width="34.5" height="34.5" rx="11" fill="var(--surface-solid)" stroke="var(--line2)" stroke-width="1.5"/>
+  <path d="M8.4 15.2A10 10 0 0 1 26.2 11.6" stroke="var(--accent)" stroke-width="2.6"/><path d="M26.6 7.6l-.3 4.2-4.1-.6" stroke="var(--accent)" stroke-width="2.2"/>
+  <path d="M27.6 20.8A10 10 0 0 1 9.8 24.4" stroke="var(--accent2)" stroke-width="2.6"/><path d="M9.4 28.4l.3-4.2 4.1.6" stroke="var(--accent2)" stroke-width="2.2"/>
+  <circle cx="18" cy="18" r="3.1" fill="var(--ink)" stroke="none"/></svg>`;
 let toastT;
 function toast(msg){ const t=$("#toast"); if(!t) return; t.textContent=msg; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),2800); }
 function errText(e){ const c=String((e&&e.code)||"");
@@ -1077,7 +1086,7 @@ function bindScope(view){ view.querySelectorAll("[data-scope]").forEach(b=>b.onc
 let gateState={pick:null, err:"", team:null, q:"", ft:"all"};
 let titleT0=0;
 function splitChars(s,start){ return [...s].map((ch,i)=>ch===" "?" ":`<span class="ch" style="--i:${start+i}">${esc(ch)}</span>`).join(""); }
-const MARQ=["Nộp bài —→ Review","Review —→ Cần sửa","Bản mới —→ Đạt","Team A ⇄ Team B","Góp ý —→ Tiến bộ","Học hỏi lẫn nhau"];
+const MARQ=["Feedback is a gift","Stay hungry, stay curious","Done is better than perfect","Raise the bar","Learn fast, share faster","Strong opinions, loosely held","Progress over perfection","Better together"];
 function gateHTML(){
   const p=gateState.pick; const teams=Store.teams();
   const gteam=gateState.team&&Store.team(gateState.team)? gateState.team : teams[0].id;
@@ -1119,7 +1128,7 @@ function gateHTML(){
   }
   const track=MARQ.map(x=>`<span>${esc(x)}</span>`).join("");
   return `<div class="gate">
-    <header class="wrap gate-top"><div class="brand">${LOGO}<div><b>Research Review Hub</b><span>${teams.map(t=>esc(t.name)).join(" & ")}</span></div></div>
+    <header class="wrap gate-top"><div class="brand">${LOGO}<div><b>Research Review Hub</b><span>${teams.length>2? teams.length+" team · ":""}${teams.map(t=>esc(t.name)).join(" · ")}</span></div></div>
       <div class="gt-right">${gateState.prev?`<button class="btn sm" type="button" id="gateBack" data-magnet><span class="lbl">← Quay lại</span></button>`:""}${syncPill()}
         <button class="icon-btn round" type="button" id="gTheme" aria-label="Đổi giao diện sáng/tối" data-magnet>${ic(isDark()?"sun":"moon")}</button></div></header>
     <main class="wrap gate-main">
@@ -1128,7 +1137,7 @@ function gateHTML(){
           <span class="mchip"><i style="background:var(--accent)"></i>Học hỏi lẫn nhau</span></div>
         <h1 class="gtitle ${tcls}" style="--el:${Math.round(el)}ms" aria-label="Research Review Hub">
           <span class="row" aria-hidden="true">${splitChars("Research",0)}</span>
-          <span class="row row2" aria-hidden="true"><span class="o">${splitChars("Review Hub",8)}</span><span class="f">${splitChars("Review Hub",8)}</span></span></h1>
+          <span class="row row2" aria-hidden="true">${splitChars("Review Hub",8)}<span class="ch dot" style="--i:18">.</span></span></h1>
         <p class="lede">Nơi các team nộp sản phẩm nghiên cứu, được nhận xét qua từng phiên bản, và <strong>xem bài của nhau để cùng tiến bộ</strong>.</p>
         <div class="gstats"><div class="gstat"><div class="n">${nPeople}</div><div class="l">thành viên</div></div>
           <div class="gstat"><div class="n">${nSub}</div><div class="l">lần nộp bài</div></div>
@@ -1263,7 +1272,7 @@ const Graph = (()=>{
     now=now||performance.now();
     cx.clearRect(0,0,W,H); const LINK=120, MR=190;
     if(mouse.active && now-lastMove>2500) mouse.active=false;
-    const useGhost=!mouse.active && !RM;
+    const useGhost=false; // the wandering "virtual reviewer" cursor was removed on request
     if(useGhost) stepGhost(now);
     const P= mouse.active? mouse : (useGhost? {x:ghost.x,y:ghost.y,active:true} : {x:-9999,y:-9999,active:false});
     for(const p of pts){ p.vx*=.995; p.vy*=.995; if(Math.hypot(p.vx,p.vy)<.12){ p.vx+=(Math.random()-.5)*.05; p.vy+=(Math.random()-.5)*.05; } }
@@ -1321,12 +1330,53 @@ function teamInfoForm(teamId){
         <div class="field"><label for="ti-leader">Tên Leader</label><input type="text" id="ti-leader" maxlength="60" placeholder="VD: Nguyễn Văn A" value="${esc(t.leaderName)}"></div></div>
       <div class="field"><label for="ti-topic">Chủ đề nghiên cứu</label><textarea id="ti-topic" style="min-height:64px" maxlength="300" placeholder="VD: Windows Malware Loader">${esc(t.topic)}</textarea></div>
       <div class="err" id="ti-err"></div></form>`,
-    foot:`<span class="spacer"></span><button class="btn" type="button" data-close>Hủy</button><button class="btn primary" type="button" id="ti-ok">${ic("check")}Lưu</button>`});
+    foot:`${App.isTeacher()&&Store.teams().length>1?`<button class="btn ghost" type="button" id="ti-del" style="color:var(--c-red)">${ic("trash")}Xóa team</button>`:""}<span class="spacer"></span><button class="btn" type="button" data-close>Hủy</button><button class="btn primary" type="button" id="ti-ok">${ic("check")}Lưu</button>`});
+  const del=$("#ti-del"); if(del) del.onclick=async()=>{
+    const busy=teamUsage(teamId);
+    if(busy){ $("#ti-err").textContent="Chỉ xóa được team trống. "+esc(t.name)+" còn "+busy+"."; return; }
+    if(!confirmTwice(del)) return;
+    try{ await Store.saveTeams(ts=>{ const i=ts.findIndex(x=>x.id===teamId); if(i>=0) ts.splice(i,1); });
+      closeModal(); toast("Đã xóa "+t.name); }catch(e){ writeErr(e); } };
   const ok=async()=>{ const name=$("#ti-name").value.trim(); if(!name){ $("#ti-err").textContent="Nhập tên team."; return; }
     $("#ti-ok").disabled=true;
     try{ await Store.saveTeams(ts=>{ const x=ts.find(x=>x.id===teamId); if(x) Object.assign(x,{name, leaderName:$("#ti-leader").value.trim(), topic:$("#ti-topic").value.trim()}); });
       closeModal(); toast("Đã lưu thông tin team"); }catch(e){ writeErr(e); $("#ti-ok").disabled=false; } };
   $("#ti-ok").onclick=ok; $("#tif").onsubmit=e=>{e.preventDefault();ok();}; $("#ti-name").focus();
+}
+
+// what still belongs to a team (a team can only be deleted when this is empty)
+function teamUsage(teamId){
+  const n1=Store.people_(teamId).length, n2=Store.allTasks().filter(k=>k.teamId===teamId).length,
+        n3=Store.threadList().filter(t=>Store.threadTeam(t)===teamId).length;
+  return [n1?n1+" thành viên":"", n2?n2+" nhiệm vụ":"", n3?n3+" bài nộp":""].filter(Boolean).join(", ");
+}
+// a destructive button asks for a second click instead of a blocking dialog
+function confirmTwice(btn){
+  if(btn.dataset.armed) return true;
+  btn.dataset.armed="1"; btn.innerHTML=ic("trash")+"Bấm lần nữa để xóa"; setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.armed; btn.innerHTML=ic("trash")+"Xóa team"; } },4000);
+  return false;
+}
+function nextTeamId(){ const used=new Set(Store.teams().map(t=>t.id)); for(const c of "ABCDEFGHIJKLMNOPQRSTUVWXYZ") if(!used.has(c)) return c; return "T"+Date.now().toString(36); }
+function addTeamForm(){
+  const id=nextTeamId();
+  openModal({title:"Thêm team mới", sub:"Team mới hiện ngay cho mọi người, ở màn hình mở đầu và trong app",
+    body:`<form class="form" id="atf">
+      <div class="two"><div class="field"><label for="at-name">Tên team</label><input type="text" id="at-name" maxlength="30" value="Team ${esc(id)}"></div>
+        <div class="field"><label for="at-leader">Tên Leader</label><input type="text" id="at-leader" maxlength="60" placeholder="VD: Nguyễn Văn A"></div></div>
+      <div class="field"><label for="at-topic">Chủ đề nghiên cứu</label><textarea id="at-topic" style="min-height:64px" maxlength="300" placeholder="Có thể để trống, Leader tự thêm sau"></textarea></div>
+      <div class="field"><label for="at-pw">Mật khẩu cho Leader team này</label><input type="password" id="at-pw" autocomplete="new-password" placeholder="Ít nhất 4 ký tự">
+        <span class="hint">Gửi mật khẩu này cho Leader. Leader có thể tự đổi sau khi đăng nhập.</span></div>
+      <div class="err" id="at-err"></div></form>`,
+    foot:`<span class="spacer"></span><button class="btn" type="button" data-close>Hủy</button><button class="btn primary" type="button" id="at-ok">${ic("plus")}Tạo team</button>`});
+  const ok=async()=>{ const name=$("#at-name").value.trim(), pw=$("#at-pw").value;
+    if(!name){ $("#at-err").textContent="Nhập tên team."; return; }
+    if(Store.teams().some(t=>t.name.toLowerCase()===name.toLowerCase())){ $("#at-err").textContent="Đã có team tên này."; return; }
+    if(pw.length<4){ $("#at-err").textContent="Mật khẩu Leader cần ít nhất 4 ký tự."; return; }
+    $("#at-ok").disabled=true;
+    try{ await setPass("leader_"+id, pw);
+      await Store.saveTeams(ts=>{ ts.push({id, name, topic:$("#at-topic").value.trim(), leaderName:$("#at-leader").value.trim()}); });
+      closeModal(); toast("Đã tạo "+name); }catch(e){ writeErr(e); $("#at-ok").disabled=false; } };
+  $("#at-ok").onclick=ok; $("#atf").onsubmit=e=>{e.preventDefault();ok();}; $("#at-name").focus();
 }
 
 function personRow(p, teamId){
@@ -1371,6 +1421,7 @@ function viewDashboard(view){
       ${ps.map(p=>personRow(p,tm.id)).join("")||`<div class="faint" style="padding:16px 22px;font-size:14px">${esc(tm.name)} chưa có thành viên.</div>`}`; }).join("");
   view.innerHTML=`<div class="stack">
     ${scopeBar(`<span class="spacer"></span>
+      ${App.isTeacher()?`<button class="btn sm" type="button" id="addTeamBtn">${ic("plus")}Thêm team</button>`:""}
       ${App.isStaff()?`<button class="btn sm ghost" type="button" id="expBtn">${ic("download")}Sao lưu</button><button class="btn sm ghost" type="button" id="impBtn">${ic("up")}Khôi phục</button>`:""}`)}
     ${teamCards(scope)}
     <div class="kpis">${kpi(c.total,scope==="all"?"Người":"Thành viên")}${kpi(c.anySubmitted,"Đã nộp","var(--s-sub)")}${kpi(c.reviewing,"Đang review","var(--s-rev)")}${kpi(c.revise,"Cần sửa","var(--s-fix)")}${kpi(c.passed,"Đạt","var(--s-pass)")}</div>
@@ -1386,6 +1437,7 @@ function viewDashboard(view){
   bindScope(view);
   view.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openThread(b.dataset.open));
   view.querySelectorAll("[data-teamedit]").forEach(b=>b.onclick=()=>teamInfoForm(b.dataset.teamedit));
+  const at=$("#addTeamBtn"); if(at) at.onclick=addTeamForm;
   const eb=$("#expBtn"); if(eb) eb.onclick=openExport;
   const ib=$("#impBtn"); if(ib) ib.onclick=openImport;
 }
