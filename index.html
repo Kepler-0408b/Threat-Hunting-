@@ -379,7 +379,6 @@ table.t tr:last-child td{border-bottom:0}
 .gtitle .ch{display:inline-block}
 .gtitle .row2{position:relative}
 .gtitle .row2{color:var(--accent)}
-.gtitle .row2 .dot{color:var(--accent2)}
 .gtitle.pre .ch{opacity:0}
 .gtitle.go .ch{opacity:0;transform:translateY(.45em) rotate(6deg);filter:blur(8px);animation:chIn .9s var(--ease) forwards;animation-delay:calc(var(--i) * 45ms - var(--el,0ms))}
 @keyframes chIn{to{opacity:1;transform:none;filter:none}}
@@ -926,7 +925,6 @@ const ICON={
 };
 const ic=(n,cls="")=>`<svg viewBox="0 0 24 24" class="${cls}">${ICON[n]}</svg>`;
 const LOGO=`<svg class="mark" viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <rect x=".75" y=".75" width="34.5" height="34.5" rx="11" fill="var(--surface-solid)" stroke="var(--line2)" stroke-width="1.5"/>
   <path d="M8.4 15.2A10 10 0 0 1 26.2 11.6" stroke="var(--accent)" stroke-width="2.6"/><path d="M26.6 7.6l-.3 4.2-4.1-.6" stroke="var(--accent)" stroke-width="2.2"/>
   <path d="M27.6 20.8A10 10 0 0 1 9.8 24.4" stroke="var(--accent2)" stroke-width="2.6"/><path d="M9.4 28.4l.3-4.2 4.1.6" stroke="var(--accent2)" stroke-width="2.2"/>
   <circle cx="18" cy="18" r="3.1" fill="var(--ink)" stroke="none"/></svg>`;
@@ -1059,7 +1057,7 @@ const App = {
 function syncPill(){
   const m=Store.mode;
   if(Store.error) return `<div class="sync err"><span class="dot"></span><span><b>Lỗi kết nối dữ liệu</b>${esc(errText(Store.error))}</span></div>`;
-  if(m==="cloud") return `<div class="sync cloud"><span class="dot"></span><span><b>Đồng bộ đám mây</b>Mọi người thấy cùng một dữ liệu</span></div>`;
+  if(m==="cloud") return `<div class="sync cloud"><span class="dot"></span><span><b>Đồng bộ đám mây</b></span></div>`;
   if(m==="claude") return `<div class="sync claude"><span class="dot"></span><span><b>Dữ liệu chung</b>Đồng bộ qua Claude</span></div>`;
   if(m==="local") return `<div class="sync local"><span class="dot"></span><span><b>Chưa nối đám mây</b>Dữ liệu chỉ ở máy này. <button type="button" data-howsync>Cách kết nối</button></span></div>`;
   return `<div class="sync"><span class="dot"></span><span>Đang kết nối…</span></div>`;
@@ -1951,7 +1949,7 @@ function viewInfo(view){
         <dt>Dữ liệu</dt><dd>${modeTxt}</dd><dt>Phiên bản</dt><dd class="mono">${APP_VERSION} · 10/2026</dd></dl></div></div>
     </div>
 
-    ${App.isStaff()||Store.mode!=="cloud"?`<div class="card" id="setup"><div class="card-h"><h2>Kết nối đám mây (Firebase)</h2>
+    ${Store.mode!=="cloud"?`<div class="card" id="setup"><div class="card-h"><h2>Kết nối đám mây (Firebase)</h2>
       ${Store.mode==="cloud"?badge("passed").replace("Đạt","Đã kết nối"):`<span class="badge b-rev"><i></i>Chưa kết nối</span>`}</div>
       <div class="card-b">${Store.mode==="cloud"?`<p style="margin:0 0 14px">Web đang dùng Firebase project <code class="mono">${esc(FIREBASE_CONFIG.projectId)}</code>. Cập nhật giao diện (thay file <code>index.html</code>) không ảnh hưởng tới dữ liệu.</p>`:`<p style="margin:0 0 16px">Hiện dữ liệu chỉ nằm trên trình duyệt này, mỗi người sẽ thấy một kiểu. Làm 6 bước sau một lần để cả nhóm dùng chung:</p>`}${setupHTML()}</div></div>`:""}
 
